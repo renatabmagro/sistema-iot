@@ -1,0 +1,18 @@
+@startuml
+start
+
+:Sensor lê temperatura e umidade;
+:ESP32 formata os dados;
+:Envia via MQTT para Raspberry Pi (Kura);
+:Raspberry Pi envia ao Kapua via MQTT;
+:Kapua armazena no PostgreSQL/TimescaleDB;
+:Interface web busca dados atualizados;
+:Interface exibe dados em tempo real;
+if (Há anomalia?) then (Sim)
+  :Exibe alerta;
+else (Não)
+  ' Fim
+endif
+
+stop
+@enduml
