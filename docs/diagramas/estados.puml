@@ -1,0 +1,10 @@
+@startuml
+[*] --> Offline
+Offline --> Inicializando : Conectar à rede
+Inicializando --> Coletando : Pronto
+Coletando --> AguardandoConfirmação : Enviar via MQTT
+AguardandoConfirmação --> [Enviado com sucesso]
+AguardandoConfirmação --> [Falha de envio]
+FalhaDeEnvio --> VoltarÀColeta
+VoltarÀColeta --> Coletando
+@enduml
