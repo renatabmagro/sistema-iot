@@ -1,0 +1,37 @@
+@startuml
+class Sensor {
+  +String id
+  +String tipo
+  +String localizacao
+  +Leitura ultimaLeitura
+}
+
+class Leitura {
+  +float temperatura
+  +float umidade
+  +DateTime timestamp
+}
+
+class DispositivoIoT {
+  +String id
+  +String ip
+  +String status
+  +void enviarDados()
+}
+
+class BancoDeDados {
+  +void salvar(Leitura leitura)
+  +List<Leitura> buscarHistorico(DateTime inicio, DateTime fim)
+  +Boolean verificarAlerta(Leitura leitura)
+}
+
+class InterfaceUsuario {
+  +void exibirTemperatura(float temperatura)
+  +void exibirUmidade(float umidade)
+  +void mostrarAlerta(String mensagem)
+}
+
+Sensor --> Leitura
+DispositivoIoT --> BancoDeDados
+BancoDeDados --> InterfaceUsuario
+@enduml
